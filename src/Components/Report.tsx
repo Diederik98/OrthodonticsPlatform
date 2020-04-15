@@ -1,6 +1,6 @@
 import React from "react";
 import {Document, Font, Image, Page, StyleSheet, Text, View} from "@react-pdf/renderer";
-import {Item} from "../resume/List";
+import {Item} from "../BasicComponents/List";
 
 
 Font.register({
