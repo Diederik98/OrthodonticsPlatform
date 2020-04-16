@@ -13,20 +13,19 @@ const widgets = {
 };
 
 const uiSchema = {
-    birthDate: {
+    date: {
         'ui:autofocus': true,
         'ui:widget': 'customDate'
     },
 };
 
 const scheme: JSONSchema6 = {
-    "title": "Informatie patient",
+    "title": "Orthodontisch verslag",
     "description": "A simple form example.",
     "type": "object",
     "required": [
         "firstName",
-        "lastName",
-        "birthDate"
+        "lastName", "date"
     ],
     "properties": {
         "firstName": {
@@ -38,7 +37,7 @@ const scheme: JSONSchema6 = {
             "type": "string",
             "title": "Last name"
         },
-        "birthDate": {
+        "date": {
             "type": "string",
             "default": "1998-12-24"
         },
@@ -67,7 +66,7 @@ const scheme: JSONSchema6 = {
     }
 };
 
-const PatientForm = (props: { onSubmit: any, onChange: any, onError: any }) => {
+const ReportForm = (props: { onSubmit: any, onChange: any, onError: any }) => {
     return (
         <Form schema={scheme}
               {...props}
@@ -79,4 +78,4 @@ const PatientForm = (props: { onSubmit: any, onChange: any, onError: any }) => {
     )
 };
 
-export default PatientForm;
+export default ReportForm;

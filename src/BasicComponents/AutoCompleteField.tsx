@@ -9,7 +9,8 @@ interface IProps<T> {
     selectCallback: (selectedId: number) => void,
     handleSearch: (query: string) => Promise<T[]>,
     placeHolder: string,
-    itemToString: (option: T) => string // option.name+" "+option.first_name
+    itemToString: (option: T) => string,  // option.name+" "+option.first_name
+    onError(message: string): void
 }
 
 export default function AutoCompleteField<T>(props: IProps<T>) {
@@ -41,13 +42,9 @@ export default function AutoCompleteField<T>(props: IProps<T>) {
             (data: T[]) => (active ? setOptions(data || []) : setOptions([])))
             // Catch any errors we hit and update the app
             .catch(error => {
-                window.confirm('Error! ' + error)
+                // TODO Better way of error handling
+                props.onError(error)
             });
-        // fetch('http://'+host+':'+port+'/api/patients/search/'+inputValue, {
-        //         method: 'get',
-        //     })
-        //         // We get the API response and receive data in JSON format...
-        //         .then(response => response.json())
 
 
         return () => {

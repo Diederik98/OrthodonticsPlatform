@@ -6,11 +6,15 @@ interface IPatient {
     name: "",
 }
 
+interface IProps {
+    onError(message: string): void
+}
+
 const host: string = "localhost";
 const port: string = "4001";
 const url: string = 'http://' + host + ':' + port + '/api/patients/search/';
 
-export const PatientSearchInput = () => {
+export const PatientSearchInput = (props: IProps) => {
     return (
         <AutoCompleteField<IPatient>
             selectCallback={() => console.log("Selected")}
@@ -18,6 +22,7 @@ export const PatientSearchInput = () => {
                 method: 'get',
             }).then(result => result.json())
             }
+            onError={props.onError}
             placeHolder={"Zoek patiënt..."}
             itemToString={(patient: IPatient) => patient.first_name + " " + patient.name}/>
     );
