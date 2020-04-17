@@ -1,6 +1,7 @@
 import React, {Fragment, useState} from "react";
 import {PDFDownloadLink, PDFViewer} from "@react-pdf/renderer";
 import {PdfDocument} from "./Report";
+import {Button} from "@material-ui/core";
 
 export default function PDFGenerator() {
 
@@ -9,24 +10,21 @@ export default function PDFGenerator() {
 
     return (
         <Fragment>
-            <div className="container">
+            <Button variant="contained">
                 <PDFDownloadLink
                     document={<PdfDocument data={data}/>}
-                    fileName="movielist.pdf"
+                    fileName="report.pdf"
                     style={{
                         textDecoration: "none",
-                        padding: "10px",
                         color: "#4a4a4a",
-                        backgroundColor: "#f2f2f2",
-                        border: "1px solid #4a4a4a"
                     }}
                 >
                     {({blob, url, loading, error}) =>
                         loading ? "Loading document..." : "Download Pdf"
                     }
                 </PDFDownloadLink>
+            </Button>
 
-            </div>
             <h2>Preview</h2>
             <PDFViewer>
                 <PdfDocument/>

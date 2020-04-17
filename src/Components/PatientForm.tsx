@@ -12,12 +12,20 @@ const widgets = {
     customDate: DatePickerWidget
 };
 
+const currDate = () => {
+    let date = new Date();
+    return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDay();
+};
+
 const uiSchema = {
     birthDate: {
         'ui:autofocus': true,
         'ui:widget': 'customDate'
     },
 };
+
+
+// TODO dynamic system for new attributes and database integration
 
 const scheme: JSONSchema6 = {
     "title": "Informatie patient",
@@ -31,39 +39,91 @@ const scheme: JSONSchema6 = {
     "properties": {
         "firstName": {
             "type": "string",
-            "title": "First name",
-            "default": "Chuck"
+            "title": "Voornaam",
         },
         "lastName": {
             "type": "string",
-            "title": "Last name"
+            "title": "Achternaam"
         },
         "birthDate": {
             "type": "string",
-            "default": "1998-12-24"
+            "title": "Geboortedatum",
+            'default': currDate()
         },
-        // "alt-date": {
-        //     "type": "string",
-        //     "format": "date"
-        // },
-        // "age": {
-        //     "type": "integer",
-        //     "title": "Age"
-        // },
-        // "bio": {
-        //     "type": "string",
-        //     "title": "Bio"
-        // },
-        // "password": {
-        //     "type": "string",
-        //     "title": "Password",
-        //     "minLength": 3
-        // },
-        // "telephone": {
-        //     "type": "string",
-        //     "title": "Telephone",
-        //     "minLength": 10
-        // }
+        "gender": {
+            "type": "string",
+            "title": "Geslacht",
+            "enum": [
+                "M",
+                "F",
+                "O"
+            ]
+        },
+        "email": {
+            "title": "Email: gescheiden met ';'",
+            "type": "string",
+            "pattern": "^((([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}));?)+$"
+            // 1 email address: ^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$
+            // multiple separated by ';': ^((([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}));?)+$
+            // TODO Maybe multiple fields if more than 1 address? "additionalProperties" ?
+        },
+        "phone": {
+            "title": "Tel/gsm: gescheiden met ';'",
+            "type": "string",
+            // TODO ADD PATTERN and maybe multiple fields if more than 1 phone number?
+        },
+        "language": {
+            "title": "Taal",
+            "type": "string",
+            "default": "NL",
+            "enum": [
+                "NL",
+                "EN",
+                "FR",
+                "DU"
+            ]
+        },
+        // TODO inline street and house-numbering
+        "street": {
+            "title": "Straat",
+            "type": "string"
+        },
+        "houseNumbering": {
+            "title": "Huisnummer",
+            "type": "string"
+        },
+        "postalCode": {
+            "title": "Postcode",
+            "type": "string",
+        },
+        "city": {
+            "title": "Stad",
+            "type": "string",
+
+        },
+        "country": {
+            "title": "Land",
+            "type": "string",
+            "default": "BE"
+        },
+
+        "association": {
+            "title": "Associatie of naam tandarts",
+            "type": "string"
+        },
+        "firstNameDentist": {
+            "title": "Voornaam tandarts van associatie",
+            "type": "string"
+        },
+        "school": {
+            "title": "School",
+            "type": "string",
+        },
+        "insuranceRefund": {
+            "title": "Terugbetaling",
+            "type": "boolean",
+            "default": "yes"
+        },
     }
 };
 

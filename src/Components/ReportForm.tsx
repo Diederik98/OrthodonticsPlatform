@@ -4,6 +4,7 @@ import {Theme as MuiTheme} from 'rjsf-material-ui';
 import {Button} from "@material-ui/core";
 import {JSONSchema6} from 'json-schema';
 import DatePickerWidget from "../BasicComponents/DatePicker";
+import PDFGenerator from "./PDFTest";
 
 const Form = withTheme(MuiTheme);
 
@@ -18,63 +19,43 @@ const uiSchema = {
         'ui:widget': 'customDate'
     },
 };
+const currDate = () => {
+    let date = new Date();
+    return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDay();
+};
+
 
 const scheme: JSONSchema6 = {
     "title": "Orthodontisch verslag",
-    "description": "A simple form example.",
+    "description": "Genereer een verslag met onderstaande variabelen...",
     "type": "object",
     "required": [
-        "firstName",
-        "lastName", "date"
+        "date"
     ],
     "properties": {
-        "firstName": {
-            "type": "string",
-            "title": "First name",
-            "default": "Chuck"
-        },
-        "lastName": {
-            "type": "string",
-            "title": "Last name"
-        },
         "date": {
+            "title": "Datum",
             "type": "string",
-            "default": "1998-12-24"
+            "default": currDate()
         },
-        // "alt-date": {
-        //     "type": "string",
-        //     "format": "date"
-        // },
-        // "age": {
-        //     "type": "integer",
-        //     "title": "Age"
-        // },
-        // "bio": {
-        //     "type": "string",
-        //     "title": "Bio"
-        // },
-        // "password": {
-        //     "type": "string",
-        //     "title": "Password",
-        //     "minLength": 3
-        // },
-        // "telephone": {
-        //     "type": "string",
-        //     "title": "Telephone",
-        //     "minLength": 10
-        // }
     }
 };
 
+// TODO pass data into pdf generator
+
 const ReportForm = (props: { onSubmit: any, onChange: any, onError: any }) => {
     return (
-        <Form schema={scheme}
-              {...props}
-              widgets={widgets}
-              uiSchema={uiSchema}
-        >
-            <Button variant="contained" color="primary" type="submit">Submit</Button>
-        </Form>
+        <React.Fragment>
+            <PDFGenerator/>
+            <Form schema={scheme}
+                  {...props}
+                  widgets={widgets}
+                  uiSchema={uiSchema}
+            >
+                <Button variant="contained" color="primary" type="submit">Submit</Button>
+            </Form>
+        </React.Fragment>
+
     )
 };
 

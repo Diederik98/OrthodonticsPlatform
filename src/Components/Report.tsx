@@ -225,39 +225,6 @@ export function PdfDocument(props: any) {
                     </View>
 
                 </View>
-                {/*{props.data*/}
-                {/*    ? props.data.map((a: any, index: number) => {*/}
-                {/*        return (*/}
-                {/*            <View key={index} style={styles.movieContainer}>*/}
-                {/*                */}
-                {/*                <View style={styles.movieDetails}>*/}
-                {/*                    <Text style={styles.movieTitle}>{a.title}</Text>*/}
-                {/*                    <View style={styles.subtitle}>*/}
-                {/*                        <View style={styles.vote}>*/}
-                {/*                            <Image source="star.png" style={styles.rating} />*/}
-                {/*                            <Text style={styles.vote_text}>{a.vote_count}</Text>*/}
-                {/*                        </View>*/}
-                {/*                        <View style={styles.vote}>*/}
-                {/*                            <Text style={styles.vote_pop}>{a.popularity}</Text>*/}
-                {/*                            <Text style={styles.vote_pop_text}>Popularity</Text>*/}
-                {/*                        </View>*/}
-                {/*                    </View>*/}
-                {/*                    <View style={styles.overviewContainer}>*/}
-                {/*                        <Text style={styles.movieOverview}>{a.overview}</Text>*/}
-                {/*                    </View>*/}
-                {/*                    <View style={styles.detailsFooter}>*/}
-                {/*                        <Text style={styles.lang}>*/}
-                {/*                            Language: {a.original_language.toUpperCase()}*/}
-                {/*                        </Text>*/}
-                {/*                        <Text style={styles.vote_average}>*/}
-                {/*                            Average Votes: {a.vote_average}*/}
-                {/*                        </Text>*/}
-                {/*                    </View>*/}
-                {/*                </View>*/}
-                {/*            </View>*/}
-                {/*        );*/}
-                {/*    })*/}
-                {/*    : ""}*/}
             </Page>
         </Document>
     );
